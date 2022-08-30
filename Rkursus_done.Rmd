@@ -69,7 +69,7 @@ Formålet med denne øvelse er at gøre den studerende i stand til at finde og d
   - Åben et R-script (# angiver kommentarer)
   - Klik på 'Files' $\rightarrow$ Find navnet på det dataset du har gemt  $\rightarrow$ 'Import Dataset' $\rightarrow$ 'Importer'. 
   - Fremadrettet kan I indlæse data via nedenstående kode:
-```{r, eval=FALSE}
+```{r}
 library(readxl)
 BNP <- read_excel("bnp.xlsx")
 View(BNP) 
@@ -77,7 +77,7 @@ View(BNP)
   - Undersøg datasæt (kan findes øverst i højere hjørne under Environment)
   - Klik på pilen ved siden af navnet på datasættet for at undersøge egenskaberne ved data (55 obs., 2 variable (Year og BNP))
   - Se bestemt variable (Datasæt$variabel)
-```{r, eval=FALSE}
+```{r}
 BNP$Year
 BNP$BNP
 ```
@@ -85,12 +85,12 @@ BNP$BNP
 ## Plot figur med 1 linje 
 - Plot en figur med 'Year' på 1. aksen og 'BNP' på 2. aksen
  - Anvend nedenstående kommando
-```{r, eval=FALSE}
+```{r}
 plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",
 ylab="BNP",col="black",main="...",sub="Kilde:...")
 ```
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=FALSE}
 plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",ylab="BNP",col="black",main="BNP i Danmark 1966-2020",sub="Kilde:Statistikbanken.dk/NAN1")
 ```
 
@@ -110,32 +110,68 @@ plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",ylab="BNP",col="black",mai
   - Plots $\rightarrow$ save as image/pdf
   - Indlæs figur i fx Word
   
-# Øvelse 
+# Øvelse 1
 - I denne øvelse, skal I anvende ovenstående 'opskrift' til at illustrere udviklingen i den danske eksport (data er samme sted som BNP)
 
-# Øvelse 
+
+- Step 1. Importer data 
+
+```{r}
+Export <- read_excel("Export.xlsx")
+View(Export)
+```
+
+- Step 2. Observer variable:
+
+```{r}
+Export$Year
+Export$X
+```
+
+
+- Step 3. vis udviklingen i eksport
+
+```{r}
+plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",
+ylab="BNP",col="black",main="...",sub="Kilde:...")
+```
+
+- Step 4: Tilføj beskrivelser 
+
+```{r, echo=FALSE}
+plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",ylab="BNP",col="black",main="BNP i Danmark 1966-2020",sub="Kilde:Statistikbanken.dk/NAN1")
+```
+
+# Øvelse 2 
+
 - I skal nu illustrere udviklingen i såvel eksport som import i samme figur
   - Hint: I skal tilføje kommandoen lines() efter plot()
-```{r, eval=FALSE}
-plot(Export$Year,Export$X,type="l",lty=1,lwd=1,xlab="År",
-ylab="BNP",col="black",main="...",sub="Kilde:...")
-lines(x,z,type="l",lty=1,lwd=1,col="red")
+  
+- Step 1: Load import data: 
+
+```{r}
+Import <- read_excel("Import.xlsx")
+View(Import)
+```
+
+```{r}
+plot(Export$Year,Export$X,type="l",lty=1,lwd=1,xlab="År",ylab="Export/Import",col="black",main="...",sub="Kilde:...");lines(Import$Year, Import$Import,type="l",lty=1,lwd=1,col="red")
 ```
 - Forklaring:
     - x angiver variabel 1 (Year)
     - z angiver variabel 3 (Import)
  
 - Dimensioner på akserne bestemmes af variablen angiver i plot(), men kan styres manuelt ved at tilføje kommandoen ylim=c(x1,y1) i plot()
-```{r, eval=FALSE}
-plot(BNP$Aar,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",
-ylab="BNP",col="black",main="...",sub="Kilde:...",ylim=c(x1,y1))
-lines(x,z,type="l",lty=1,lwd=1,col="red")
+```{r}
+plot(Export$Year,Export$X,type="l",lty=1,lwd=1,xlab="År",
+ylab="BNP",col="black",main="...",sub="Kilde:...",ylim=c(100,1300)); lines(Import$Year,Import$Import,type="l",lty=1,lwd=1,col="red");grid()
 ```
     - x1 angiver her den nedre værdi på aksen, mens y1 angiver øvre værdi på aksen
 - Når man har to linjer bør man tilføje en legend, for at øge læsevenligheden af figuren:
   - Hint: tilføj kommandoen
-```{r, eval=FALSE}
-legend(x,y,legend=c("var1","var2"),lty=1,lwd=2,col=c("cvar1","cvar2"),bty="n")
+```{r}
+plot(Export$Year,Export$X,type="l",lty=1,lwd=1,xlab="År",
+ylab="BNP",col="black",main="...",sub="Kilde:...",ylim=c(100,1300));lines(Import$Year,Import$Import,type="l",lty=1,lwd=1,col="red"); legend(x=1970,y= 1200,legend=c("Export","Import"),lty=1,lwd=2,col=c("Black","Red"),bty="n"); grid()
 ```
 - Forklaring:
   - x = placering på x-aksen
@@ -151,16 +187,22 @@ legend(x,y,legend=c("var1","var2"),lty=1,lwd=2,col=c("cvar1","cvar2"),bty="n")
 # Øvelse 
 - I skal nu illustrere udviklingen i såvel investeringer som BNP i samme figur
   - Hint: Størrelsesforholdet mellem de to variable taler for at plotte et diagram med to y-akser
-```{r, eval=FALSE}
-plot(x, y, axes=FALSE, ylim=c(x1,y1), xlab="", ylab="", 
-type="l",col="black", main="")
-axis(2, ylim=c(x1,y1),col="black")  
+  
+- Step 1: Importer data
+
+```{r}
+Inv <- read_excel("Inv.xlsx")
+```
+
+  
+```{r}
+plot(BNP$Year,BNP$BNP, ylim=c(600,2300), xlab="Year", ylab="BNP", 
+type="l",col="black", main="");axis(2, ylim=c(600,2300),col="black") 
   
 par(new=TRUE)
   
-plot(x,z, xlab="", ylab="", ylim=c(x2,y2), 
-    axes=FALSE, type="l", col="red")
-axis(4, ylim=c(x2,y2), col="red",col.axis="red")
+plot(Inv$Year,Inv$I, ylab= "", xlab = "", ylim=c(100,600), 
+    axes=FALSE, type="l", col="red");axis(4, ylim=c(100,600), col="red",col.axis="red")
 ```
 Forklaring:
     - x = variabel 1
@@ -176,4 +218,17 @@ Forklaring:
 Undersøg grafisk nedenstående to påstande om den danske økonomi:
 
 1. Realvæksten i den årlige BNP var ikke negativ i perioden 1982-2007
+
+```{r}
+plot(BNP$Year,BNP$BNP, xlim = c(1982,2007), xlab="Year", ylab="BNP", 
+type="l",col="black", main="");axis(2, ylim=c(600,2300),col="black")
+```
+
+
+```{r}
+plot(BNP$Year[-1],diff(BNP$BNP), xlim = c(1982,2007), xlab="Year", ylab="BNP", 
+type="l",col="black", main="");axis(2, ylim=c(600,2300),col="black") 
+```
+
 2. Trods effekterne fra Corona, var beskæftigelsen højere i 2020 end i 2018
+
