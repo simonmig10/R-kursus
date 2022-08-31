@@ -1,0 +1,50 @@
+---
+title: "lecture 1 presentation"
+author: "Simon"
+date: "29/7/2022"
+output:
+  beamer_presentation:
+    toc: yes
+    slide_level: 2
+    theme: AnnArbor
+    colortheme: dolphin
+    fonttheme: structurebold
+  pdf_document:
+    toc: yes
+---
+
+# Intro
+
+- Hvis i har spørgsmål til R/Datacamp
+
+- Kontakt info: sft@business.aau.dk
+
+- Kontor: Fibigerstræde 10 lokale 24
+
+
+# Kort intro til R-Studio interface
+
+## Projekter
+
+- Projekter gør dit liv meget nemmere! 
+
+Klik 'File' $\rightarrow$ 'New projekt' $\rightarrow$ 'New directory' $\rightarrow$ 'New projekt' $\rightarrow$ Giv dit projekt et navn (Måske RKursus) $\rightarrow$ Vælg hvor projekt mappen skal ligge på din computer (Kunne være Skrivebordet)
+
+Se nu øverst i Højere hjørne om dit projekt fremgår. 
+
+Alt du gemmer i denne mappe vil nu blive vist under fanen 'files' og gør det nemmere blandt andet at importere data i R. 
+
+## Help
+
+- Brug "Help" i R
+
+Enden ved at søge under fanen, eller skrive '?' foran en funktion:
+
+```{r, eval=FALSE}
+?mean
+```
+
+
+# Kort introduktion til Datacamp 
+
+
