@@ -1,7 +1,7 @@
 ---
 title: "Anvendelse af R i Dansk økonomi i Europa"
 author:
-- \emph{Mikael Randrup Byrialsen}^[Aalborg University, randrup@business.aau.dk, MaMTEP, Department of Business and Management.] 
+- \emph{Simon Fløj Thomsen}^[Aalborg University, sft@business.aau.dk, MaMTEP] 
 date: \emph{`r format(Sys.time(), '%B %d, %Y')`}
 subtitle:   
 output:
@@ -44,20 +44,20 @@ abstract: \begingroup Formålet med dette dokument er at give en introduktion ti
 ## Download af data
 Formålet med denne øvelse er at gøre den studerende i stand til at finde og downloade data fra Danmarks statistik.
 
-- Find data for BNP for Danmark for perioden 1966-2020
+- Find data for BNP for Danmark for perioden 1966-2021
   - Gå ind på statistikbanken <https://www.statbank.dk/statbank5a/default.asp?w=1440>
-  - Klik på 'Nationalregnskab og offentlige finanser' under emner
-  - Klik på 'Årligt nationalregnskab'
-  - Klik på 'Nøgletal, årligt nationalregnskab'
+  - Klik på 'Økonomi' under emner
+  - Klik på 'Nationalregnskab'
+  - Klik på 'Nøgletal for nationalrengskabet (BNP)'
   - Vælg datasæt 'NAN1'
   - Vælg tidsserien: 'B.1*g BNP' $\rightarrow$ prisenhed: '2010-priser' $\rightarrow$ År: 'markér alle'
   - Klik på 'VIS TABEL'
-  - Klik på 'gem som' '*.xlsx' og gem filen på computeren
+  - Klik på 'gem som' '.xlsx' og gem filen i *projekt mappen*!
 
 ## Håndtering af data i excel
 - Gør data klar til import i R
   - Åben datasættet i excel
-  - Markér området B3:BE4 og kopiér cellerne
+  - Markér området B3:BF4 og kopiér cellerne
   - Højreklik i celle A7 og vælg 'indsæt speciel' $\rightarrow$ 'transpose' og data er anvist i søljer 
   - Slet række 1:6
   - Skriv 'Year' eller 'Aar' i celle A1 og 'BNP' i celle B1
@@ -65,16 +65,17 @@ Formålet med denne øvelse er at gøre den studerende i stand til at finde og d
   
 ## Indlæsning af data i R
 - Indlæs data i R
+  - Sørg for at du øverst i højere hjørne har valgt det rigtige projekt!
   - Åben et R-script (# angiver kommentarer)
-  - Klik på 'Filer' $\rightarrow$ 'Import Dataset' $\rightarrow$ 'From EXCEL' $\rightarrow$ 'Browse'(find filen manuelt)
+  - Klik på 'Files' $\rightarrow$ Find navnet på det dataset du har gemt  $\rightarrow$ 'Import Dataset' $\rightarrow$ 'Importer'. 
   - Fremadrettet kan I indlæse data via nedenstående kode:
 ```{r, eval=FALSE}
 library(readxl)
 BNP <- read_excel("bnp.xlsx")
 View(BNP) 
 ```
-  - Undersøg datasæt (kan ligeledes findes i toppen)
-  - Klik på pilen ved siden af navnet på datasættet for at undersøge egenskaberne ved data (55 obs., 2 variable (Aar og BNP))
+  - Undersøg datasæt (kan findes øverst i højere hjørne under Environment)
+  - Klik på pilen ved siden af navnet på datasættet for at undersøge egenskaberne ved data (55 obs., 2 variable (Year og BNP))
   - Se bestemt variable (Datasæt$variabel)
 ```{r, eval=FALSE}
 BNP$Year
@@ -82,19 +83,19 @@ BNP$BNP
 ```
   
 ## Plot figur med 1 linje 
-- Plot en figur med 'Aar' på 1. aksen og 'BNP' på 2. aksen
+- Plot en figur med 'Year' på 1. aksen og 'BNP' på 2. aksen
  - Anvend nedenstående kommando
 ```{r, eval=FALSE}
 plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",
 ylab="BNP",col="black",main="...",sub="Kilde:...")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",ylab="BNP",col="black",main="BNP i Danmark 1966-2020",sub="Kilde:Statistikbanken.dk/NAN1")
 ```
 
 - Forklaring:   
-  - 'BNP$Aar' angiver 'x-variablen'
+  - 'BNP$Year' angiver 'x-variablen'
   - 'BNP$BNP' angiver 'y-variablen'
   - 'type="l"' angiver linje-type (l=linje, p=punkter, s= steps, osv.)
   - 'lty=1' angiver linje-type (1=linje, 2=stiplet, 3=prikker, osv.)
@@ -106,7 +107,7 @@ plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",ylab="BNP",col="black",mai
   - 'sub="y"' angiver en bemærkning/kilde, som vises under figuren
     
 - Eksportér figur som PDF/PNG
-  - Plots $\rightarrow$ Export $\rightarrow$ save as image/pdf
+  - Plots $\rightarrow$ save as image/pdf
   - Indlæs figur i fx Word
   
 # Øvelse 
@@ -116,13 +117,13 @@ plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",ylab="BNP",col="black",mai
 - I skal nu illustrere udviklingen i såvel eksport som import i samme figur
   - Hint: I skal tilføje kommandoen lines() efter plot()
 ```{r, eval=FALSE}
-plot(BNP$Aar,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",
+plot(Export$Year,Export$X,type="l",lty=1,lwd=1,xlab="År",
 ylab="BNP",col="black",main="...",sub="Kilde:...")
 lines(x,z,type="l",lty=1,lwd=1,col="red")
 ```
 - Forklaring:
-    - x angiver variabel 1
-    - z angiver variabel 3
+    - x angiver variabel 1 (Year)
+    - z angiver variabel 3 (Import)
  
 - Dimensioner på akserne bestemmes af variablen angiver i plot(), men kan styres manuelt ved at tilføje kommandoen ylim=c(x1,y1) i plot()
 ```{r, eval=FALSE}
