@@ -1,15 +1,15 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
 \documentclass[
   12pt,
 ]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -35,6 +35,17 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Anvendelse af R i Dansk økonomi i Europa},
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=blue,
+  urlcolor=blue,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -106,28 +117,17 @@
 \captionsetup[figure]{labelformat=empty}
 \DeclareCaptionFont{scriptsize}{\scriptsize}
 \captionsetup[subfigure]{font=scriptsize}
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Anvendelse af R i Dansk økonomi i Europa},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={blue},
-  urlcolor={blue},
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Anvendelse af R i Dansk økonomi i Europa}
 \author{\emph{Simon Fløj Thomsen}\footnote{Aalborg University,
   \href{mailto:sft@business.aau.dk}{\nolinkurl{sft@business.aau.dk}},
   MaMTEP}}
-\date{\emph{august 30, 2022}}
+\date{\emph{august 31, 2022}}
 
 \begin{document}
 \maketitle
@@ -172,7 +172,7 @@ og downloade data fra Danmarks statistik.
   \item
     Klik på `VIS TABEL'
   \item
-    Klik på `gem som' `.xlsx' og gem filen i \emph{projekt mappen}!
+    Klik på `gem som' `.xlsx' og gem filen i \textbf{projekt mappen}!
   \end{itemize}
 \end{itemize}
 
@@ -190,14 +190,14 @@ excel}\label{huxe5ndtering-af-data-i-excel}}
   \item
     Åben datasættet i excel
   \item
-    Markér området B3:BF4 og kopiér cellerne
+    Markér området B3:BF4 og kopiér cellerne (De to variable år og bnp)
   \item
     Højreklik i celle A7 og vælg `indsæt speciel' \(\rightarrow\)
     `transpose' og data er anvist i søljer
   \item
     Slet række 1:6
   \item
-    Skriv `Year' eller `Aar' i celle A1 og `BNP' i celle B1
+    Skriv `Year' i celle A1 og `BNP' i celle B1
   \item
     Gem excelfilen
   \end{itemize}
@@ -288,7 +288,7 @@ excel}\label{huxe5ndtering-af-data-i-excel}}
   \item
     `lwd' angiver tykkelsen på linjen
   \item
-    `xlab=``år' angiver titlen på x-aksen
+    `xlab="år' angiver titlen på x-aksen
   \item
     `ylab=``BNP''\,' angiver titlen på y-aksen
   \item
@@ -340,7 +340,7 @@ excel}\label{huxe5ndtering-af-data-i-excel}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(BNP}\SpecialCharTok{$}\NormalTok{Aar,BNP}\SpecialCharTok{$}\NormalTok{BNP,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"År"}\NormalTok{,}
+\FunctionTok{plot}\NormalTok{(Export}\SpecialCharTok{$}\NormalTok{Year,Export}\SpecialCharTok{$}\NormalTok{X,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"År"}\NormalTok{,}
 \AttributeTok{ylab=}\StringTok{"BNP"}\NormalTok{,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{,}\AttributeTok{main=}\StringTok{"..."}\NormalTok{,}\AttributeTok{sub=}\StringTok{"Kilde:..."}\NormalTok{)}
 \FunctionTok{lines}\NormalTok{(x,z,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
@@ -354,9 +354,9 @@ excel}\label{huxe5ndtering-af-data-i-excel}}
   \begin{itemize}
   \tightlist
   \item
-    x angiver variabel 1
+    x angiver variabel 1 (Year)
   \item
-    z angiver variabel 3
+    z angiver variabel 3 (Import)
   \end{itemize}
 \item
   Dimensioner på akserne bestemmes af variablen angiver i plot(), men
@@ -365,7 +365,7 @@ excel}\label{huxe5ndtering-af-data-i-excel}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(BNP}\SpecialCharTok{$}\NormalTok{Aar,BNP}\SpecialCharTok{$}\NormalTok{BNP,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"År"}\NormalTok{,}
+\FunctionTok{plot}\NormalTok{(BNP}\SpecialCharTok{$}\NormalTok{Year,BNP}\SpecialCharTok{$}\NormalTok{BNP,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"År"}\NormalTok{,}
 \AttributeTok{ylab=}\StringTok{"BNP"}\NormalTok{,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{,}\AttributeTok{main=}\StringTok{"..."}\NormalTok{,}\AttributeTok{sub=}\StringTok{"Kilde:..."}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x1,y1))}
 \FunctionTok{lines}\NormalTok{(x,z,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
@@ -441,7 +441,7 @@ excel}\label{huxe5ndtering-af-data-i-excel}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(x, y, }\AttributeTok{axes=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x1,y1), }\AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{, }
+\FunctionTok{plot}\NormalTok{(x, y, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x1,y1), }\AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{, }
 \AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
 \FunctionTok{axis}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x1,y1),}\AttributeTok{col=}\StringTok{"black"}\NormalTok{)  }
   
@@ -453,9 +453,10 @@ excel}\label{huxe5ndtering-af-data-i-excel}}
 \end{Highlighting}
 \end{Shaded}
 
-Forklaring: - x = variabel 1 - y = variabel 2 - x1 = nedre værdi y-akse
-1 - y1 = øvre værdi y-akse 1 - x = variabel 1 - z = variabel 3 - x2 =
-nedre værdi y-akse 2 - y2 = øvre værdi y-akse 2
+Forklaring: - x = variabel 1 (Year) - y = variabel 2 (BNP) - x1 = nedre
+værdi y-akse 1 - y1 = øvre værdi y-akse 1 - x = variabel 1 (Year) - z =
+variabel 3 (Investeringer) - x2 = nedre værdi y-akse 2 - y2 = øvre værdi
+y-akse 2
 
 \hypertarget{uxf8velse-3}{%
 \section{Øvelse}\label{uxf8velse-3}}

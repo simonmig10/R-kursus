@@ -52,15 +52,15 @@ Formålet med denne øvelse er at gøre den studerende i stand til at finde og d
   - Vælg datasæt 'NAN1'
   - Vælg tidsserien: 'B.1*g BNP' $\rightarrow$ prisenhed: '2010-priser' $\rightarrow$ År: 'markér alle'
   - Klik på 'VIS TABEL'
-  - Klik på 'gem som' '.xlsx' og gem filen i *projekt mappen*!
+  - Klik på 'gem som' '.xlsx' og gem filen i **projekt mappen**!
 
 ## Håndtering af data i excel
 - Gør data klar til import i R
   - Åben datasættet i excel
-  - Markér området B3:BF4 og kopiér cellerne
+  - Markér området B3:BF4 og kopiér cellerne (De to variable år og bnp)
   - Højreklik i celle A7 og vælg 'indsæt speciel' $\rightarrow$ 'transpose' og data er anvist i søljer 
   - Slet række 1:6
-  - Skriv 'Year' eller 'Aar' i celle A1 og 'BNP' i celle B1
+  - Skriv 'Year' i celle A1 og 'BNP' i celle B1
   - Gem excelfilen
   
 ## Indlæsning af data i R
@@ -68,7 +68,7 @@ Formålet med denne øvelse er at gøre den studerende i stand til at finde og d
   - Sørg for at du øverst i højere hjørne har valgt det rigtige projekt!
   - Åben et R-script (# angiver kommentarer)
   - Klik på 'Files' $\rightarrow$ Find navnet på det dataset du har gemt  $\rightarrow$ 'Import Dataset' $\rightarrow$ 'Importer'. 
-  - Fremadrettet kan I indlæse data via nedenstående kode:
+  - Fremadrettet kan I indlæse data via nedenstående kode:  
 ```{r, eval=FALSE}
 library(readxl)
 BNP <- read_excel("bnp.xlsx")
@@ -127,7 +127,7 @@ lines(x,z,type="l",lty=1,lwd=1,col="red")
  
 - Dimensioner på akserne bestemmes af variablen angiver i plot(), men kan styres manuelt ved at tilføje kommandoen ylim=c(x1,y1) i plot()
 ```{r, eval=FALSE}
-plot(BNP$Aar,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",
+plot(BNP$Year,BNP$BNP,type="l",lty=1,lwd=1,xlab="År",
 ylab="BNP",col="black",main="...",sub="Kilde:...",ylim=c(x1,y1))
 lines(x,z,type="l",lty=1,lwd=1,col="red")
 ```
@@ -152,7 +152,7 @@ legend(x,y,legend=c("var1","var2"),lty=1,lwd=2,col=c("cvar1","cvar2"),bty="n")
 - I skal nu illustrere udviklingen i såvel investeringer som BNP i samme figur
   - Hint: Størrelsesforholdet mellem de to variable taler for at plotte et diagram med to y-akser
 ```{r, eval=FALSE}
-plot(x, y, axes=FALSE, ylim=c(x1,y1), xlab="", ylab="", 
+plot(x, y, ylim=c(x1,y1), xlab="", ylab="", 
 type="l",col="black", main="")
 axis(2, ylim=c(x1,y1),col="black")  
   
@@ -163,12 +163,12 @@ plot(x,z, xlab="", ylab="", ylim=c(x2,y2),
 axis(4, ylim=c(x2,y2), col="red",col.axis="red")
 ```
 Forklaring:
-    - x = variabel 1
-    - y = variabel 2
+    - x = variabel 1 (Year)
+    - y = variabel 2 (BNP)
     - x1 = nedre værdi y-akse 1
     - y1 = øvre værdi y-akse 1
-    - x = variabel 1
-    - z = variabel 3
+    - x = variabel 1 (Year)
+    - z = variabel 3 (Investeringer)
     - x2 = nedre værdi y-akse 2
     - y2 = øvre værdi y-akse 2
 
