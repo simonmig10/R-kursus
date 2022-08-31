@@ -1,0 +1,477 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  12pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{dcolumn}
+\usepackage{here}
+\usepackage{longtable}
+\usepackage{subfig}
+\usepackage{caption}
+\captionsetup{skip=2pt,labelsep=space,justification=justified,singlelinecheck=off}
+\captionsetup[subfigure]{labelformat=empty}
+\captionsetup[figure]{labelformat=empty}
+\DeclareCaptionFont{scriptsize}{\scriptsize}
+\captionsetup[subfigure]{font=scriptsize}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Anvendelse af R i Dansk økonomi i Europa},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Anvendelse af R i Dansk økonomi i Europa}
+\author{\emph{Simon Fløj Thomsen}\footnote{Aalborg University,
+  \href{mailto:sft@business.aau.dk}{\nolinkurl{sft@business.aau.dk}},
+  MaMTEP}}
+\date{\emph{august 30, 2022}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\begingroup Formålet med dette dokument er at give en introduktion til
+anvendelsen af data og R i jeres kursus i Dansk økonomi i europa.
+\endgroup
+\end{abstract}
+
+\newpage
+
+\hypertarget{hints}{%
+\section{Hints}\label{hints}}
+
+\hypertarget{download-af-data}{%
+\subsection{Download af data}\label{download-af-data}}
+
+Formålet med denne øvelse er at gøre den studerende i stand til at finde
+og downloade data fra Danmarks statistik.
+
+\begin{itemize}
+\tightlist
+\item
+  Find data for BNP for Danmark for perioden 1966-2021
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Gå ind på statistikbanken
+    \url{https://www.statbank.dk/statbank5a/default.asp?w=1440}
+  \item
+    Klik på `Økonomi' under emner
+  \item
+    Klik på `Nationalregnskab'
+  \item
+    Klik på `Nøgletal for nationalrengskabet (BNP)'
+  \item
+    Vælg datasæt `NAN1'
+  \item
+    Vælg tidsserien: 'B.1*g BNP' \(\rightarrow\) prisenhed:
+    `2010-priser' \(\rightarrow\) År: `markér alle'
+  \item
+    Klik på `VIS TABEL'
+  \item
+    Klik på `gem som' `.xlsx' og gem filen i \emph{projekt mappen}!
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{huxe5ndtering-af-data-i-excel}{%
+\subsection{Håndtering af data i
+excel}\label{huxe5ndtering-af-data-i-excel}}
+
+\begin{itemize}
+\tightlist
+\item
+  Gør data klar til import i R
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Åben datasættet i excel
+  \item
+    Markér området B3:BF4 og kopiér cellerne
+  \item
+    Højreklik i celle A7 og vælg `indsæt speciel' \(\rightarrow\)
+    `transpose' og data er anvist i søljer
+  \item
+    Slet række 1:6
+  \item
+    Skriv `Year' eller `Aar' i celle A1 og `BNP' i celle B1
+  \item
+    Gem excelfilen
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{indluxe6sning-af-data-i-r}{%
+\subsection{Indlæsning af data i R}\label{indluxe6sning-af-data-i-r}}
+
+\begin{itemize}
+\tightlist
+\item
+  Indlæs data i R
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sørg for at du øverst i højere hjørne har valgt det rigtige projekt!
+  \item
+    Åben et R-script (\# angiver kommentarer)
+  \item
+    Klik på `Files' \(\rightarrow\) Find navnet på det dataset du har
+    gemt \(\rightarrow\) `Import Dataset' \(\rightarrow\) `Importer'.
+  \item
+    Fremadrettet kan I indlæse data via nedenstående kode:
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+\NormalTok{BNP }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"bnp.xlsx"}\NormalTok{)}
+\FunctionTok{View}\NormalTok{(BNP) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Undersøg datasæt (kan findes øverst i højere hjørne under Environment)
+\item
+  Klik på pilen ved siden af navnet på datasættet for at undersøge
+  egenskaberne ved data (55 obs., 2 variable (Year og BNP))
+\item
+  Se bestemt variable (Datasæt\$variabel)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BNP}\SpecialCharTok{$}\NormalTok{Year}
+\NormalTok{BNP}\SpecialCharTok{$}\NormalTok{BNP}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plot-figur-med-1-linje}{%
+\subsection{Plot figur med 1 linje}\label{plot-figur-med-1-linje}}
+
+\begin{itemize}
+\tightlist
+\item
+  Plot en figur med `Year' på 1. aksen og `BNP' på 2. aksen
+\item
+  Anvend nedenstående kommando
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(BNP}\SpecialCharTok{$}\NormalTok{Year,BNP}\SpecialCharTok{$}\NormalTok{BNP,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"År"}\NormalTok{,}
+\AttributeTok{ylab=}\StringTok{"BNP"}\NormalTok{,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{,}\AttributeTok{main=}\StringTok{"..."}\NormalTok{,}\AttributeTok{sub=}\StringTok{"Kilde:..."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Forklaring:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    `BNP\$Year' angiver `x-variablen'
+  \item
+    `BNP\$BNP' angiver `y-variablen'
+  \item
+    `type=``l''\,' angiver linje-type (l=linje, p=punkter, s= steps,
+    osv.)
+  \item
+    `lty=1' angiver linje-type (1=linje, 2=stiplet, 3=prikker, osv.)
+  \item
+    `lwd' angiver tykkelsen på linjen
+  \item
+    `xlab=``år' angiver titlen på x-aksen
+  \item
+    `ylab=``BNP''\,' angiver titlen på y-aksen
+  \item
+    `col=``black''\,' angiver farven (enten ``navn'' eller tal: 1=sort,
+    2=rød osv.)
+  \item
+    `main=``x''\,' angiver en titel på figuren
+  \item
+    `sub=``y''\,' angiver en bemærkning/kilde, som vises under figuren
+  \end{itemize}
+\item
+  Eksportér figur som PDF/PNG
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Plots \(\rightarrow\) save as image/pdf
+  \item
+    Indlæs figur i fx Word
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{uxf8velse}{%
+\section{Øvelse}\label{uxf8velse}}
+
+\begin{itemize}
+\tightlist
+\item
+  I denne øvelse, skal I anvende ovenstående `opskrift' til at
+  illustrere udviklingen i den danske eksport (data er samme sted som
+  BNP)
+\end{itemize}
+
+\hypertarget{uxf8velse-1}{%
+\section{Øvelse}\label{uxf8velse-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  I skal nu illustrere udviklingen i såvel eksport som import i samme
+  figur
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hint: I skal tilføje kommandoen lines() efter plot()
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(BNP}\SpecialCharTok{$}\NormalTok{Aar,BNP}\SpecialCharTok{$}\NormalTok{BNP,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"År"}\NormalTok{,}
+\AttributeTok{ylab=}\StringTok{"BNP"}\NormalTok{,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{,}\AttributeTok{main=}\StringTok{"..."}\NormalTok{,}\AttributeTok{sub=}\StringTok{"Kilde:..."}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(x,z,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Forklaring:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    x angiver variabel 1
+  \item
+    z angiver variabel 3
+  \end{itemize}
+\item
+  Dimensioner på akserne bestemmes af variablen angiver i plot(), men
+  kan styres manuelt ved at tilføje kommandoen ylim=c(x1,y1) i plot()
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(BNP}\SpecialCharTok{$}\NormalTok{Aar,BNP}\SpecialCharTok{$}\NormalTok{BNP,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"År"}\NormalTok{,}
+\AttributeTok{ylab=}\StringTok{"BNP"}\NormalTok{,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{,}\AttributeTok{main=}\StringTok{"..."}\NormalTok{,}\AttributeTok{sub=}\StringTok{"Kilde:..."}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x1,y1))}
+\FunctionTok{lines}\NormalTok{(x,z,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{1}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+- x1 angiver her den nedre værdi på aksen, mens y1 angiver øvre værdi på aksen
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Når man har to linjer bør man tilføje en legend, for at øge
+  læsevenligheden af figuren:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hint: tilføj kommandoen
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{legend}\NormalTok{(x,y,}\AttributeTok{legend=}\FunctionTok{c}\NormalTok{(}\StringTok{"var1"}\NormalTok{,}\StringTok{"var2"}\NormalTok{),}\AttributeTok{lty=}\DecValTok{1}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"cvar1"}\NormalTok{,}\StringTok{"cvar2"}\NormalTok{),}\AttributeTok{bty=}\StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Forklaring:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    x = placering på x-aksen
+  \item
+    y = placering på y-aksen
+  \item
+    var1 = navn på variabel 1
+  \item
+    var2 = navn på variable 2
+  \item
+    lty = linje-type
+  \item
+    lwd = linje-tykkelse
+  \item
+    cvar1 = farve på linje for variable 1
+  \item
+    cvar2 = farve på linje for variable 2
+  \item
+    bty=``n'' - ønskes ramme omkring legend, slettes dette led.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{uxf8velse-2}{%
+\section{Øvelse}\label{uxf8velse-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  I skal nu illustrere udviklingen i såvel investeringer som BNP i samme
+  figur
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hint: Størrelsesforholdet mellem de to variable taler for at plotte
+    et diagram med to y-akser
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(x, y, }\AttributeTok{axes=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x1,y1), }\AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{, }
+\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\FunctionTok{axis}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x1,y1),}\AttributeTok{col=}\StringTok{"black"}\NormalTok{)  }
+  
+\FunctionTok{par}\NormalTok{(}\AttributeTok{new=}\ConstantTok{TRUE}\NormalTok{)}
+  
+\FunctionTok{plot}\NormalTok{(x,z, }\AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x2,y2), }
+    \AttributeTok{axes=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\FunctionTok{axis}\NormalTok{(}\DecValTok{4}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(x2,y2), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{col.axis=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Forklaring: - x = variabel 1 - y = variabel 2 - x1 = nedre værdi y-akse
+1 - y1 = øvre værdi y-akse 1 - x = variabel 1 - z = variabel 3 - x2 =
+nedre værdi y-akse 2 - y2 = øvre værdi y-akse 2
+
+\hypertarget{uxf8velse-3}{%
+\section{Øvelse}\label{uxf8velse-3}}
+
+Undersøg grafisk nedenstående to påstande om den danske økonomi:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Realvæksten i den årlige BNP var ikke negativ i perioden 1982-2007
+\item
+  Trods effekterne fra Corona, var beskæftigelsen højere i 2020 end i
+  2018
+\end{enumerate}
+
+  \bibliography{Bibliography.bib}
+
+\end{document}
