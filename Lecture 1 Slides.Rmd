@@ -15,12 +15,23 @@ output:
 
 # Intro
 
+### Om mig:
+
+- Studerende på 9. semester, og i praktik ved MaMTEP
+
 - Hvis i har spørgsmål til R/Datacamp
 
 - Kontakt info: sft@business.aau.dk
 
-- Kontor: Fibigerstræde 10 lokale 24
+- Kontor: Fibigerstræde 11 lokale 24
 
+### Kurset
+
+1. Kort intro til projekter og kodning i r-script
+
+2. Introduktion til r-markdown 
+
+3. Introduktion til Tidyverse
 
 # Kort intro til R-Studio interface
 
@@ -28,11 +39,17 @@ output:
 
 - Projekter gør dit liv meget nemmere! 
 
-Klik 'File' $\rightarrow$ 'New projekt' $\rightarrow$ 'New directory' $\rightarrow$ 'New projekt' $\rightarrow$ Giv dit projekt et navn (Måske RKursus) $\rightarrow$ Vælg hvor projekt mappen skal ligge på din computer (Kunne være Skrivebordet)
 
-Se nu øverst i Højere hjørne om dit projekt fremgår. 
+- Klik 'File' $\rightarrow$ 'New projekt' $\rightarrow$ 'New directory' $\rightarrow$ 'New projekt' $\rightarrow$ Giv dit projekt et navn (Måske RKursus) $\rightarrow$ Vælg hvor projekt mappen skal ligge på din computer (Kunne være Skrivebordet)
 
-Alt du gemmer i denne mappe vil nu blive vist under fanen 'files' og gør det nemmere blandt andet at importere data i R. 
+
+- Se nu øverst i Højere hjørne om dit projekt fremgår. 
+
+
+- Alt du gemmer i denne mappe vil nu blive vist under fanen 'files' og gør det nemmere blandt andet at importere data i R.
+
+
+- Vi prøver!
 
 ## Help
 
@@ -47,4 +64,12 @@ Enden ved at søge under fanen, eller skrive '?' foran en funktion:
 
 # Kort introduktion til Datacamp 
 
+- Alle bør som minimum gennemføre introduction to r 
+
+- Brug skill tracks
+
+- Få flere point end Andreas
+
+
+# Opgaver!
 
