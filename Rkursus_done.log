@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  8 SEP 2022 14:00
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  9 SEP 2022 13:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Rkursus.tex
-(./Rkursus.tex
+**Rkursus_done.tex
+(./Rkursus_done.tex
 LaTeX2e <2022-06-01> patch level 5
 L3 programming layer <2022-08-30> (c:/Users/Simon ik mig/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -452,8 +452,8 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip75
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count319
-) (./Rkursus.aux)
-\openout1 = `Rkursus.aux'.
+) (./Rkursus_done.aux)
+\openout1 = `Rkursus_done.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
 LaTeX Font Info:    ... okay on input line 132.
@@ -708,9 +708,9 @@ LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 132.
 Package hyperref Info: Link coloring ON on input line 132.
-(./Rkursus.out) (./Rkursus.out)
+(./Rkursus_done.out) (./Rkursus_done.out)
 \@outlinefile=\write4
-\openout4 = `Rkursus.out'.
+\openout4 = `Rkursus_done.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -812,6 +812,57 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [2]
+Overfull \hbox (5.91296pt too wide) in paragraph at lines 260--260
+[]\TU/lmtt/m/n/12 ##  [1] "1966" "1967" "1968" "1969" "1970" "1971" "1972" "1973" "1974" "1975"[] 
+ []
+
+
+Overfull \hbox (5.96097pt too wide) in paragraph at lines 260--260
+[]\TU/lmtt/m/n/12 ## [11] "1976" "1977" "1978" "1979" "1980" "1981" "1982" "1983" "1984" "1985"[] 
+ []
+
+
+Overfull \hbox (5.88892pt too wide) in paragraph at lines 260--260
+[]\TU/lmtt/m/n/12 ## [21] "1986" "1987" "1988" "1989" "1990" "1991" "1992" "1993" "1994" "1995"[] 
+ []
+
+
+Overfull \hbox (5.98492pt too wide) in paragraph at lines 260--260
+[]\TU/lmtt/m/n/12 ## [31] "1996" "1997" "1998" "1999" "2000" "2001" "2002" "2003" "2004" "2005"[] 
+ []
+
+
+Overfull \hbox (6.08093pt too wide) in paragraph at lines 260--260
+[]\TU/lmtt/m/n/12 ## [41] "2006" "2007" "2008" "2009" "2010" "2011" "2012" "2013" "2014" "2015"[] 
+ []
+
+
+Overfull \hbox (6.00882pt too wide) in paragraph at lines 275--275
+[]\TU/lmtt/m/n/12 ##  [1]  702.4  741.2  782.4  833.3  846.6  872.1  906.3  943.4  932.8  919.2[] 
+ []
+
+
+Overfull \hbox (6.00891pt too wide) in paragraph at lines 275--275
+[]\TU/lmtt/m/n/12 ## [11]  973.7  991.9 1014.0 1053.2 1048.1 1041.2 1079.5 1107.5 1153.7 1199.9[] 
+ []
+
+
+Overfull \hbox (5.99693pt too wide) in paragraph at lines 275--275
+[]\TU/lmtt/m/n/12 ## [21] 1258.7 1261.9 1261.8 1269.9 1288.6 1306.6 1332.2 1332.3 1403.3 1445.8[] 
+ []
+
+
+Overfull \hbox (5.97295pt too wide) in paragraph at lines 275--275
+[]\TU/lmtt/m/n/12 ## [31] 1487.8 1536.3 1570.3 1616.6 1677.2 1691.0 1698.9 1705.5 1751.0 1792.0[] 
+ []
+
+
+Overfull \hbox (5.99696pt too wide) in paragraph at lines 275--275
+[]\TU/lmtt/m/n/12 ## [41] 1862.1 1879.0 1869.4 1777.7 1810.9 1835.1 1839.3 1856.5 1886.5 1930.7[] 
+ []
+
+File: Rkursus_done_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-3-1.pdf>
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -820,8 +871,98 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [3]
-Overfull \hbox (12.28484pt too wide) in paragraph at lines 376--376
-[]\TU/lmtt/m/n/12 - x1 angiver her den nedre værdi på aksen, mens y1 angiver øvre værdi på aksen[] 
+File: Rkursus_done_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-4-1.pdf>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[4]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[5]
+Overfull \hbox (5.91296pt too wide) in paragraph at lines 379--379
+[]\TU/lmtt/m/n/12 ##  [1] "1966" "1967" "1968" "1969" "1970" "1971" "1972" "1973" "1974" "1975"[] 
+ []
+
+
+Overfull \hbox (5.96097pt too wide) in paragraph at lines 379--379
+[]\TU/lmtt/m/n/12 ## [11] "1976" "1977" "1978" "1979" "1980" "1981" "1982" "1983" "1984" "1985"[] 
+ []
+
+
+Overfull \hbox (5.88892pt too wide) in paragraph at lines 379--379
+[]\TU/lmtt/m/n/12 ## [21] "1986" "1987" "1988" "1989" "1990" "1991" "1992" "1993" "1994" "1995"[] 
+ []
+
+
+Overfull \hbox (5.98492pt too wide) in paragraph at lines 379--379
+[]\TU/lmtt/m/n/12 ## [31] "1996" "1997" "1998" "1999" "2000" "2001" "2002" "2003" "2004" "2005"[] 
+ []
+
+
+Overfull \hbox (6.08093pt too wide) in paragraph at lines 379--379
+[]\TU/lmtt/m/n/12 ## [41] "2006" "2007" "2008" "2009" "2010" "2011" "2012" "2013" "2014" "2015"[] 
+ []
+
+
+Overfull \hbox (6.0328pt too wide) in paragraph at lines 394--394
+[]\TU/lmtt/m/n/12 ##  [1]  123.6  128.2  140.7  149.2  154.9  164.7  173.4  187.8  194.2  192.8[] 
+ []
+
+
+Overfull \hbox (5.99683pt too wide) in paragraph at lines 394--394
+[]\TU/lmtt/m/n/12 ## [11]  199.5  206.6  209.5  232.3  245.3  266.5  275.0  287.6  297.1  315.0[] 
+ []
+
+
+Overfull \hbox (6.0568pt too wide) in paragraph at lines 394--394
+[]\TU/lmtt/m/n/12 ## [21]  319.2  334.7  365.3  382.3  407.3  432.4  433.6  438.9  475.1  488.8[] 
+ []
+
+
+Overfull \hbox (6.0088pt too wide) in paragraph at lines 394--394
+[]\TU/lmtt/m/n/12 ## [31]  511.5  534.5  556.4  619.1  696.9  720.3  751.7  742.7  765.1  824.2[] 
+ []
+
+
+Overfull \hbox (5.93689pt too wide) in paragraph at lines 394--394
+[]\TU/lmtt/m/n/12 ## [41]  909.4  942.6  979.1  888.8  914.9  980.8  992.2 1008.1 1039.7 1076.9[] 
+ []
+
+File: Rkursus_done_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-7-1.pdf>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[6]
+File: Rkursus_done_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-8-1.pdf>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[7]
+File: Rkursus_done_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-10-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 452--455
+[][]
  []
 
 
@@ -831,8 +972,83 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[4]
-No file Rkursus.bbl.
+[8]
+File: Rkursus_done_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-11-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 471--475
+[][]
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[9]
+File: Rkursus_done_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-12-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 486--492
+[][]
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[10]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[11]
+File: Rkursus_done_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-14-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 530--534
+[][]
+ []
+
+File: Rkursus_done_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-15-1.pdf>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[12]
+File: Rkursus_done_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-16-1.pdf>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[13]
+File: Rkursus_done_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
+<use Rkursus_done_files/figure-latex/unnamed-chunk-18-1.pdf>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[14]
+No file Rkursus_done.bbl.
 
 Package caption Warning: Unused \captionsetup[subfigure] on input line 116.
 See the caption package documentation for explanation.
@@ -848,17 +1064,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[5] (./Rkursus.aux)
-Package rerunfilecheck Info: File `Rkursus.out' has not changed.
-(rerunfilecheck)             Checksum: 8F8B88DED3DF97F46C6E55DC9603954D;1078.
+[15] (./Rkursus_done.aux)
+Package rerunfilecheck Info: File `Rkursus_done.out' has not changed.
+(rerunfilecheck)             Checksum: CEB2D7629AE9E6C28B787981A548EDE3;1104.
  ) 
 Here is how much of TeX's memory you used:
- 19261 strings out of 477747
- 359233 string characters out of 5841957
- 864659 words of memory out of 5000000
- 40045 multiletter control sequences out of 15000+600000
- 476679 words of font info for 88 fonts, out of 8000000 for 9000
+ 19353 strings out of 477747
+ 364342 string characters out of 5841957
+ 863682 words of memory out of 5000000
+ 40123 multiletter control sequences out of 15000+600000
+ 476687 words of font info for 89 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,11n,121p,430b,544s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,12n,121p,459b,544s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Rkursus.pdf (5 pages).
+Output written on Rkursus_done.pdf (15 pages).
