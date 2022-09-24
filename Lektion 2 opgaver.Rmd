@@ -1,0 +1,45 @@
+---
+title: "Lektion 2 opgaver"
+author:
+- \emph{Simon Fløj Thomsen}^[Aalborg University, sft@business.aau.dk, MaMTEP] 
+date: \emph{`r format(Sys.time(), '%B %d, %Y')`}
+subtitle:   
+output:
+  pdf_document: 
+    citation_package: natbib
+    fig_caption: yes
+    keep_tex: yes
+    latex_engine: xelatex
+    number_sections: yes
+  html_document:
+    df_print: paged
+  word_document: default
+geometry: margin=1in
+bibliography: Bibliography.bib
+biblio-style: apalike
+urlcolor: blue
+citecolor: blue
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \usepackage{color}
+- \usepackage{dcolumn}
+- \usepackage{here}
+- \usepackage{longtable}
+- \usepackage{subfig}
+- \usepackage{caption}
+- \captionsetup{skip=2pt,labelsep=space,justification=justified,singlelinecheck=off}
+- \captionsetup[subfigure]{labelformat=empty}
+- \captionsetup[figure]{labelformat=empty}
+- \DeclareCaptionFont{scriptsize}{\scriptsize}
+- \captionsetup[subfigure]{font=scriptsize}
+fontsize: 12pt
+abstract: \begingroup Formålet med dette dokument er at give en introduktion til anvendelsen af R-markdown til fremtidige projekter   \endgroup 
+---
+
+
+
+
+
+
+

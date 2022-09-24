@@ -1,0 +1,78 @@
+---
+title: "Lektion 2 slides"
+author: "Simon"
+date: "24/09/2022"
+output:
+  beamer_presentation:
+    toc: yes
+    slide_level: 2
+    theme: AnnArbor
+    colortheme: dolphin
+    fonttheme: structurebold
+  pdf_document:
+    toc: yes
+---
+
+
+# Kort om R-markdown:
+
+
+- Blandt andet brugt til at lave disse slides
+
+- Lad os se hvordan de her slides ser ud i R
+
+- vend jer til at bruge r-markdown frem for et R-script
+
+
+
+# Intro til R-markdown 
+
+## Åben et R-markdown dokument 
+
+1. Klik på file
+2. Vælg new file
+3. Vælg R-markdown 
+4. Til venstre skulle felted "document" allerede være valgt. 
+5. Giv dit dokument en titel samt skriv dit navn under Author
+6. Defualt output format kommer vi til så bare tryk "ok"
+
+Resten tager vi i R. 
+
+
+## Brug af R-markdown
+
+- Øverst finder i Yammel koden, her kan i sætte generelle ting for hele dokumentet. 
+
+
+- Neden under er et markdown dokument: Her kan du blandt andet skrive text, lave overskrifter, sætte figure ind. 
+**MEN** Du kan ikke skrive r-kode i dette!
+
+- For at skrive r-kode skal vi lave en code-chunk:
+
+1. still musen der hvor du ønsker en code chunk
+2. tryk på +c knappen i øverste højre hjørne 
+3. vælg R
+
+```{r}
+## Du kan nu skrive r kode 
+
+1+1
+```
+
+## Brug af R-markdown 
+
+- Hvis du har windows er der en genvej til at lave code-chunks: **Tryk ctrl+alt+i**
+
+- Kopir følgene kode ind i din code chunk: 
+
+```{r}
+library(car)
+# Car pakken har et dataset der hedder "cars"
+speed=cars$speed
+dist=cars$dist
+plot(speed, dist); lines(speed, dist)
+```
+
+
+
+
