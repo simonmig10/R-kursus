@@ -70,8 +70,29 @@ library(car)
 # Car pakken har et dataset der hedder "cars"
 speed=cars$speed
 dist=cars$dist
-plot(speed, dist); lines(speed, dist)
+plot(speed, dist); lines(speed, dist); grid()
 ```
+
+
+- Hvis du tilføjer noget til et plot skal det være i samme linje (modsat i R-script)
+
+
+## Brug af R-markdown 
+
+- *Kursiv* "*"
+- **Fed** "**"
+- 1. Overskrift: "#"
+- 2. Underoverskrift: "##" op til "####"
+
+Hvis du har lavet overskrifter brug "outline" øverst i højre hjørne til at se dine sektioner
+
+
+## Fra R-markdown til Word, html og pdf
+
+1. Tryk nu på pilen ud fra "knit" øverst i vesntre side
+2. vælg "html"
+3. Pøv nu "word"
+
 
 
 
