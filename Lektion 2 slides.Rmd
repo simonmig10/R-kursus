@@ -49,7 +49,7 @@ Resten tager vi i R.
 
 - For at skrive r-kode skal vi lave en code-chunk:
 
-1. still musen der hvor du ønsker en code chunk
+1. Klik der hvor du ønsker en code chunk
 2. tryk på +c knappen i øverste højre hjørne 
 3. vælg R
 
@@ -65,7 +65,7 @@ Resten tager vi i R.
 
 - Kopir følgene kode ind i din code chunk: 
 
-```{r}
+```{r, message=FALSE, fig.height=3}
 library(car)
 # Car pakken har et dataset der hedder "cars"
 speed=cars$speed
@@ -89,11 +89,30 @@ Hvis du har lavet overskrifter brug "outline" øverst i højre hjørne til at se
 
 ## Fra R-markdown til Word, html og pdf
 
+### Word og html
 1. Tryk nu på pilen ud fra "knit" øverst i vesntre side
 2. vælg "html"
 3. Pøv nu "word"
 
 
+### PDF
+
+```{r}
+#install.packages('tinytex')
+#tinytex::install_tinytex()
+```
+
+- Vælg nu "pdf"
 
 
 
+# Opgaver
+
+
+- Formålet med denne opgave er at give en skabelon til en opgave. 
+
+- Specielt brugbart i kodetunge fag som: statistik, økonometri 1, økonometri 2 ,økonometri 3. 
+
+- Note til opgaver: Vis hvad jeg mener når jeg skriver: "r-chunk"
+
+- I kommer til at bruge tidsserier, derfor nemmere at plotte!

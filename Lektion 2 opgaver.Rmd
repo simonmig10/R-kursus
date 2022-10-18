@@ -39,6 +39,73 @@ abstract: \begingroup Formålet med dette dokument er at give en introduktion ti
 
 
 
+# Opgave 1 Klargøring af R-markdown 
+
+Sørg for du er i dit projekt vi lavede sidste gang!
+
+
+## A) pakker
+
+1. Åben et nyt r-markdown og give navnet "Opgaver 2 R-kursus" 
+2. Slet koden givet til at starte med, men behold Yammel koden. 
+3. Lav overskrift "Packages" og load følgende pakker:
+
+```{r, message=FALSE}
+library(car)
+library(readxl)
+library(tseries)
+```
+
+4. Skriv "message = False" i r-chunk, for at undgå ligegyldigt output af kode. 
+5. Skriv "echo = False" i r-chunk, for at undgå ligegyldig kode. 
+
+
+
+## B) Data
+
+1. Importer data for BNP, Export og Import med følgende kode: (Jeg bruger data fra lektion 1 vi havde)
+
+```{r}
+BNP <- read_excel("bnp.xlsx")
+X <- read_excel("Export.xlsx")
+IM <- read_excel("Import.xlsx")
+```
+
+2. definer de 3 tidsserier ved brug af ts() funktionen 
+
+```{r}
+bnp= ts(BNP$BNP, start = 1966, frequency = 1 )
+x= ts(X$X, start = 1966, frequency = 1 )
+im= ts(IM$Import, start = 1966, frequency = 1 )
+```
+
+
+Normalt hvis der er brug for data manipulation som vi kigger på næste gang gør jeg det her!
+
+
+# Visualisering af Data
+
+1. Lav 4 plots du syntes giver mening, da vi nu har tidsserier behøves i ik definere "YEAR" som sidste gang. (Husk ved brug af lines() skal det være på samme linje!)
+2. Du kan skifte størrelsen på dine plots ved brug af "fig.width=5" og "fig.height=5" (Dette kan også sættes som en generel setting i Yammel koden)
+
+3. Find et billede på nettet/din computer du vil bruge i dit dokument, gem det i din **Projekt** mappe ved navnet "billede.jpg".
+4. Bru nedenstående kode for at sætte billedet ind i dokumentet. (Hint: dpi= 300 bestemmer størrlesen af billedet, jo mindre tal jo større billede)
+
+```{r, eval=FALSE}
+knitr::include_graphics(rep("billede.jpg", 1), dpi = 300)
+```
+
+# Analyse
+
+1. Udregn correlation mellem de 3 variable: 
+
+```{r}
+cor(bnp,x)
+cor(bnp,im)
+cor(x,im)
+```
+2. presenter i en tabel ved brug af nedenstående kode (Dette skal ikke være i R-kode!)
+
 
 
 
