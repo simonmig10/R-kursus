@@ -97,16 +97,39 @@ knitr::include_graphics(rep("billede.jpg", 1), dpi = 300)
 
 # Analyse
 
-1. Udregn correlation mellem de 3 variable: 
+
+1. Udregn correlation mellem de 3 variable:
 
 ```{r}
 cor(bnp,x)
 cor(bnp,im)
 cor(x,im)
+
 ```
-2. presenter i en tabel ved brug af nedenstående kode (Dette skal ikke være i R-kode!)
+
+Vis dem i et plot
+
+```{r}
+"kode fra sds"
+```
 
 
+2. presenter i en tabel ved brug af nedenstående (Dette skal ikke være i R-kode!)
 
+
+```{r, eval=FALSE}
+|     |       |       |       |
+|-----|-------|-------|-------|
+|     | BNP   | IMP   | EXP   |
+| BNP | 1     | 0.962 | 0.979 |
+| IMP | 0.962 | 1     | 0.996 |
+| EXP | 0.979 | 0.996 | 1     |
+```
+
+
+3. Kommenter kort på resultatet 
+
+
+# Opgaver
 
 
