@@ -109,7 +109,7 @@ Hvis du har lavet overskrifter brug "outline" øverst i højre hjørne til at se
 # Opgaver
 
 
-- Formålet med denne opgave er at give en skabelon til en opgave. 
+- Formålet med denne opgave er at give en skabelon til et projekt. 
 
 - Specielt brugbart i kodetunge fag som: statistik, økonometri 1, økonometri 2 ,økonometri 3. 
 

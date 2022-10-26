@@ -127,7 +127,7 @@
 \author{\emph{Simon Fløj Thomsen}\footnote{Aalborg University,
   \href{mailto:sft@business.aau.dk}{\nolinkurl{sft@business.aau.dk}},
   MaMTEP}}
-\date{\emph{oktober 18, 2022}}
+\date{\emph{oktober 26, 2022}}
 
 \begin{document}
 \maketitle
@@ -160,6 +160,7 @@ Sørg for du er i dit projekt vi lavede sidste gang!
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(car)}
 \FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(tseries)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -187,9 +188,25 @@ Sørg for du er i dit projekt vi lavede sidste gang!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{bnp }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"bnp.xlsx"}\NormalTok{)}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"Export.xlsx"}\NormalTok{)}
-\NormalTok{im }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"Import.xlsx"}\NormalTok{)}
+\NormalTok{BNP }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"bnp.xlsx"}\NormalTok{)}
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"Export.xlsx"}\NormalTok{)}
+\NormalTok{IM }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"Import.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  definer de 3 tidsserier ved brug af ts() funktionen
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bnp}\OtherTok{=} \FunctionTok{ts}\NormalTok{(BNP}\SpecialCharTok{$}\NormalTok{BNP, }\AttributeTok{start =} \DecValTok{1966}\NormalTok{, }\AttributeTok{frequency =} \DecValTok{1}\NormalTok{ )}
+\NormalTok{x}\OtherTok{=} \FunctionTok{ts}\NormalTok{(X}\SpecialCharTok{$}\NormalTok{X, }\AttributeTok{start =} \DecValTok{1966}\NormalTok{, }\AttributeTok{frequency =} \DecValTok{1}\NormalTok{ )}
+\NormalTok{im}\OtherTok{=} \FunctionTok{ts}\NormalTok{(IM}\SpecialCharTok{$}\NormalTok{Import, }\AttributeTok{start =} \DecValTok{1966}\NormalTok{, }\AttributeTok{frequency =} \DecValTok{1}\NormalTok{ )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -202,8 +219,9 @@ gang gør jeg det her!
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Lav 4 plots du syntes giver mening, eventuelt brug kode fra sidste
-  lektion. (Husk ved brug af lines() skal det være på samme linje!)
+  Lav 4 plots du syntes giver mening, da vi nu har tidsserier behøves i
+  ik definere ``YEAR'' som sidste gang. (Husk ved brug af lines() skal
+  det være på samme linje!)
 \item
   Du kan skifte størrelsen på dine plots ved brug af ``fig.width=5'' og
   ``fig.height=5'' (Dette kan også sættes som en generel setting i
@@ -223,6 +241,54 @@ gang gør jeg det her!
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{analyse}{%
+\section{Analyse}\label{analyse}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Udregn correlation mellem de 3 variable:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(bnp,x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9791313
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(bnp,im)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9619662
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x,im)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9955177
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  presenter i en tabel ved brug af nedenstående kode (Dette skal ikke
+  være i R-kode!)
+\end{enumerate}
 
   \bibliography{Bibliography.bib}
 
