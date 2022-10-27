@@ -1,15 +1,15 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
 \documentclass[
   12pt,
 ]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -35,6 +35,17 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Lektion 2 opgaver},
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=blue,
+  urlcolor=blue,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -76,6 +87,16 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -106,28 +127,17 @@
 \captionsetup[figure]{labelformat=empty}
 \DeclareCaptionFont{scriptsize}{\scriptsize}
 \captionsetup[subfigure]{font=scriptsize}
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Lektion 2 opgaver},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={blue},
-  urlcolor={blue},
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Lektion 2 opgaver}
 \author{\emph{Simon Fløj Thomsen}\footnote{Aalborg University,
   \href{mailto:sft@business.aau.dk}{\nolinkurl{sft@business.aau.dk}},
   MaMTEP}}
-\date{\emph{oktober 26, 2022}}
+\date{\emph{oktober 27, 2022}}
 
 \begin{document}
 \maketitle
@@ -136,9 +146,8 @@
 anvendelsen af R-markdown til fremtidige projekter \endgroup
 \end{abstract}
 
-\hypertarget{opgave-1-klarguxf8ring-af-r-markdown}{%
-\section{Opgave 1 Klargøring af
-R-markdown}\label{opgave-1-klarguxf8ring-af-r-markdown}}
+\hypertarget{klarguxf8ring-af-r-markdown}{%
+\section{Klargøring af R-markdown}\label{klarguxf8ring-af-r-markdown}}
 
 Sørg for du er i dit projekt vi lavede sidste gang!
 
@@ -161,6 +170,7 @@ Sørg for du er i dit projekt vi lavede sidste gang!
 \FunctionTok{library}\NormalTok{(car)}
 \FunctionTok{library}\NormalTok{(readxl)}
 \FunctionTok{library}\NormalTok{(tseries)}
+\FunctionTok{library}\NormalTok{(corrplot)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -194,13 +204,24 @@ Sørg for du er i dit projekt vi lavede sidste gang!
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{data-manipulering}{%
+\subsection{Data manipulering}\label{data-manipulering}}
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
 \tightlist
 \item
-  definer de 3 tidsserier ved brug af ts() funktionen
+  Vi laver variablene til tidsserier:
 \end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Start: Hvornår tidsserien starter
+\item
+  Frequency: om det er årligt (1), Kvartals (4), månedelig (12), eller
+  dagligt data (365)
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -224,8 +245,7 @@ gang gør jeg det her!
   det være på samme linje!)
 \item
   Du kan skifte størrelsen på dine plots ved brug af ``fig.width=5'' og
-  ``fig.height=5'' (Dette kan også sættes som en generel setting i
-  Yammel koden)
+  ``fig.height=5'' (Skal gøres i r-chunk)
 \item
   Find et billede på nettet/din computer du vil bruge i dit dokument,
   gem det i din \textbf{Projekt} mappe ved navnet ``billede.jpg''.
@@ -254,32 +274,22 @@ gang gør jeg det her!
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{cor}\NormalTok{(bnp,x)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.9791313
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{cor}\NormalTok{(bnp,im)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.9619662
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{cor}\NormalTok{(x,im)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [1] 0.9955177
-\end{verbatim}
+Vis dem i et plot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(bnp, x, im)}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(data)}
+\FunctionTok{corrplot}\NormalTok{(res, }\AttributeTok{type=}\StringTok{"upper"}\NormalTok{, }\AttributeTok{order=}\StringTok{"hclust"}\NormalTok{, }\AttributeTok{tl.col=}\StringTok{"black"}\NormalTok{, }\AttributeTok{tl.srt=}\DecValTok{45}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Lektion-2-opgaver_files/figure-latex/unnamed-chunk-6-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -292,15 +302,46 @@ gang gør jeg det her!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\SpecialCharTok{|}     \ErrorTok{|}       \ErrorTok{|}       \ErrorTok{|}       \ErrorTok{|}
-\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}}\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}}\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}}\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}}\ErrorTok{|}
-\ErrorTok{|}     \ErrorTok{|}\NormalTok{ BNP   }\SpecialCharTok{|}\NormalTok{ IMP   }\SpecialCharTok{|}\NormalTok{ EXP   }\SpecialCharTok{|}
-\ErrorTok{|}\NormalTok{ BNP }\SpecialCharTok{|} \DecValTok{1}     \SpecialCharTok{|} \FloatTok{0.962} \SpecialCharTok{|} \FloatTok{0.979} \SpecialCharTok{|}
-\ErrorTok{|}\NormalTok{ IMP }\SpecialCharTok{|} \FloatTok{0.962} \SpecialCharTok{|} \DecValTok{1}     \SpecialCharTok{|} \FloatTok{0.996} \SpecialCharTok{|}
-\ErrorTok{|}\NormalTok{ EXP }\SpecialCharTok{|} \FloatTok{0.979} \SpecialCharTok{|} \FloatTok{0.996} \SpecialCharTok{|} \DecValTok{1}     \SpecialCharTok{|}
+\SpecialCharTok{|}      \ErrorTok{|}       \ErrorTok{|}       \ErrorTok{|}       \ErrorTok{|}
+\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}{-}}\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}}\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}}\ErrorTok{|}\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}}\ErrorTok{|}
+\ErrorTok{|}\NormalTok{ Corr }\SpecialCharTok{|}\NormalTok{ BNP   }\SpecialCharTok{|}\NormalTok{ IM    }\SpecialCharTok{|}\NormalTok{ EX    }\SpecialCharTok{|}
+\ErrorTok{|}\NormalTok{ BNP  }\SpecialCharTok{|} \DecValTok{1}     \SpecialCharTok{|} \FloatTok{0.962} \SpecialCharTok{|} \FloatTok{0.979} \SpecialCharTok{|}
+\ErrorTok{|}\NormalTok{ IM   }\SpecialCharTok{|} \FloatTok{0.962} \SpecialCharTok{|} \DecValTok{1}     \SpecialCharTok{|} \FloatTok{0.996} \SpecialCharTok{|}
+\ErrorTok{|}\NormalTok{ EX   }\SpecialCharTok{|} \FloatTok{0.979} \SpecialCharTok{|} \FloatTok{0.996} \SpecialCharTok{|} \DecValTok{1}     \SpecialCharTok{|}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{longtable}[]{@{}llll@{}}
+\caption{Correlation}\tabularnewline
+\toprule
+& & & \\
+\midrule
+\endfirsthead
+\toprule
+& & & \\
+\midrule
+\endhead
+Corr & BNP & IM & EX \\
+BNP & 1 & 0.962 & 0.979 \\
+IM & 0.962 & 1 & 0.996 \\
+EX & 0.979 & 0.996 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Kommenter kort på resultatet marker det \textbf{vigtigste} med fed
+  skrift
+\end{enumerate}
+
+\hypertarget{opgaver}{%
+\section{Opgaver}\label{opgaver}}
+
+Find nu mindst tre variable du gerne vil lave en mini rapport om!
+Inkluder de samme punkter som i ovenstående.
 
   \bibliography{Bibliography.bib}
 
