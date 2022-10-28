@@ -116,3 +116,5 @@ Hvis du har lavet overskrifter brug "outline" øverst i højre hjørne til at se
 - Note til opgaver: Vis hvad jeg mener når jeg skriver: "r-chunk"
 
 - I kommer til at bruge tidsserier, derfor nemmere at plotte!
+
+- For mere info om r-markdown: [https://rmarkdown.rstudio.com/lesson-15.html]
