@@ -98,14 +98,14 @@ Vi bruger dataset fra cars pakken
 library(car)
 ```
 
-```{r}
+```{r, message=FALSE, results='hide'}
 cars %>%
   select(dist) %>%
   filter(dist > 4 & dist< 20) %>%
   mutate(sum_dist= cumsum(dist)) 
 ```
 
-```{r}
+```{r, message=FALSE, results='hide'}
 ### Hvis ik jeg bruger pipes:
 mutate(filter(select(cars,dist),dist > 4 & dist< 20),sum_dist= cumsum(dist))
 ```
@@ -123,8 +123,7 @@ library(magrittr)
 ```
 
 
-```{r}
-
+```{r, results='hide'}
 cars %<>%
   select(dist) %>%
   filter(dist > 4 & dist< 20) %>%
@@ -135,14 +134,94 @@ head(cars)
 
 Alternativt giv et nyt navn
 
-```{r}
-
+```{r, results='hide'}
 car_new= cars %>%
   select(dist) %>%
   filter(dist > 4 & dist< 20) %>%
   mutate(sum_dist= cumsum(dist))
-
 ```
 
+
+## vigtige dplyr functions
+
+1. filter() picks cases based on their values.
+2. select() picks variables based on their names.
+3. arrange() changes the ordering of the rows.
+4. mutate() adds new variables that are functions of existing variables
+5. summarise() reduces multiple values down to a single summary.
+
+
+## Eksempler med dplyr functions
+
+Lad os tage et lidt større dataset den her gang 
+
+```{r, eval=FALSE}
+head(starwars)
+```
+
+Hvis der er mange rækker brug glimpse() i stedet: 
+
+```{r, eval=FALSE}
+glimpse(starwars)
+```
+
+
+## Eksempler med dplyr functions
+
+### Filter()
+
+The verb filter() lets you subset a dataframe by rows (observations), meaning the output will filter for only rows which fulfill a certain condition.
+
+```{r, eval=FALSE}
+starwars %>%
+  filter(skin_color == "gold")
+```
+
+**Vigtigt** Brug "==" for at definer condition. 
+
+
+
+## Eksempler med dplyr functions
+
+### Select()
+
+The verb select() lets you subset a dataframe by column (variable), meaning the output will only contain certain columns in the stated order
+
+```{r, eval=FALSE}
+### Her vælger jeg name og mass
+starwars %>%
+  select(-c(name, mass))
+### Her fjerner jeg name og mass
+starwars %>%
+  select(-c(name, mass))
+```
+
+
+## Eksempler med dplyr functions
+
+
+### arrange()
+
+The verb arrange() defines the way the rows of your dataframe are ordered
+
+```{r, eval=FALSE}
+#Fra størst til mindst:
+
+starwars %>%
+  select(mass) %>%
+  arrange(desc(mass))
+
+#Fra mindst til størt:
+
+starwars %>%
+  select(mass) %>%
+  arrange(mass)
+```
+
+## Eksempler med dplyr functions
+
+### Mutate
+
+The verb mutate() lets you manipulate existing variables or create new ones.
 
 
