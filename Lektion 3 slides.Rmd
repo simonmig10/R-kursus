@@ -1,0 +1,148 @@
+---
+title: "Tidyverse og gg2plot"
+author: "Simon"
+date: "15/11/2022"
+output:
+  beamer_presentation:
+    toc: yes
+    slide_level: 2
+    theme: AnnArbor
+    colortheme: dolphin
+    fonttheme: structurebold
+  pdf_document:
+    toc: yes
+---
+
+
+# Kort intro:
+
+
+### Tidyverse
+
+Tidyverse består af flere underliggende pakker, en af disse er dplyr som jeg bruger til ca. 90% af det data manipulation jeg laver. Hvorfor?
+
+- Syntax er meget det samme som SQL 
+
+- De fleste funktioner i dplyr er hurtigere end base R funktioenr
+
+- Designet til at arbejde med pipe funktioner som gør koden mere overskueligt.
+
+
+
+
+### gg2plot
+
+- Bruges til mere advanceret visualisering sammenlignet med Base-R's plot funktion. 
+
+
+
+# Tidyverse
+
+
+## tibbles
+
+Tidyverse benytter tibbles som er lavet på følgende 3 måder: 
+
+1. benyt selve tibble() funktionen 
+
+2. Benyt as_tibble() på en eksisterende tabel
+
+3. Hvis du bruger en hver dplyr funktion på en data frame bliver denne til en tibble.
+
+
+## Pipes
+
+Det objekt der står inden "pipe" bliver sendt ind som det første argument i det der står efter. 
+
+Se nedenstående eksempel.
+
+```{r, eval=FALSE}
+library(tidyverse)
+x= c(1,2,3,4,5,6,7,8,9,10)
+mean(x)
+x %>% mean()
+```
+
+
+
+## Pipes 
+
+Så vi bruger pipes når vi skal lave flere ændringer til vores dataset i en bestemt rækkefølge. 
+
+```{r, eval=FALSE}
+# Nested functions
+went_to_bed(had_dinner(programmed_some_r(had_lunch(programmed_some_r(had_brekfast(got_up(day)))))))
+
+# vs pipes
+day %>%
+  got_up() %>%
+  had_breakfast() %>%
+  programmed_some_r() %>%
+  had_lunch() %>%
+  programmed_some_r() %>%
+  had_dinner() %>%
+  went_to_bed()
+```
+
+
+## Pipes 
+
+Eksempel på data manipulation med Tidyverse: 
+*Yderligere beskrivelse af funktioner kommer*
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+Vi bruger dataset fra cars pakken
+```{r, message=FALSE}
+library(car)
+```
+
+```{r}
+cars %>%
+  select(dist) %>%
+  filter(dist > 4 & dist< 20) %>%
+  mutate(sum_dist= cumsum(dist)) 
+```
+
+```{r}
+### Hvis ik jeg bruger pipes:
+mutate(filter(select(cars,dist),dist > 4 & dist< 20),sum_dist= cumsum(dist))
+```
+
+
+## Pipes
+
+
+**Vigtigt**
+
+Når jeg bruger pipe omskrives det første objekt ikke, hvis jeg ønsker dette brug "margrittr" :
+
+```{r, message=FALSE}
+library(magrittr)
+```
+
+
+```{r}
+
+cars %<>%
+  select(dist) %>%
+  filter(dist > 4 & dist< 20) %>%
+  mutate(sum_dist= cumsum(dist))
+
+head(cars)
+```
+
+Alternativt giv et nyt navn
+
+```{r}
+
+car_new= cars %>%
+  select(dist) %>%
+  filter(dist > 4 & dist< 20) %>%
+  mutate(sum_dist= cumsum(dist))
+
+```
+
+
+
