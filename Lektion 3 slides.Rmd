@@ -70,10 +70,6 @@ x %>% mean()
 Så vi bruger pipes når vi skal lave flere ændringer til vores dataset i en bestemt rækkefølge. 
 
 ```{r, eval=FALSE}
-# Nested functions
-went_to_bed(had_dinner(programmed_some_r(had_lunch(programmed_some_r(had_brekfast(got_up(day)))))))
-
-# vs pipes
 day %>%
   got_up() %>%
   had_breakfast() %>%
@@ -107,7 +103,8 @@ cars %>%
 
 ```{r, message=FALSE, results='hide'}
 ### Hvis ik jeg bruger pipes:
-mutate(filter(select(cars,dist),dist > 4 & dist< 20),sum_dist= cumsum(dist))
+mutate(filter(select(cars,dist),dist > 4 & dist< 20)
+       ,sum_dist= cumsum(dist))
 ```
 
 
@@ -131,7 +128,8 @@ cars %<>%
 
 head(cars)
 ```
-
+## pipes
+ 
 Alternativt giv et nyt navn
 
 ```{r, results='hide'}
@@ -177,7 +175,7 @@ starwars %>%
   filter(skin_color == "gold")
 ```
 
-**Vigtigt** Brug "==" for at definer condition. 
+**Vigtigt** Brug "==", "<=", ">=", ">" eller "<" for at definer betingelse. 
 
 
 
@@ -190,7 +188,7 @@ The verb select() lets you subset a dataframe by column (variable), meaning the 
 ```{r, eval=FALSE}
 ### Her vælger jeg name og mass
 starwars %>%
-  select(-c(name, mass))
+  select(name, mass)
 ### Her fjerner jeg name og mass
 starwars %>%
   select(-c(name, mass))
@@ -224,4 +222,88 @@ starwars %>%
 
 The verb mutate() lets you manipulate existing variables or create new ones.
 
+
+Vi kan lave en ny variable:
+
+```{r}
+starwars %>%
+  select(mass, height) %>%
+  mutate(bmi= mass*height) %>%
+  head(3)
+```
+
+## Eksempler med dplyr functions
+
+### Mutate
+The verb mutate() lets you manipulate existing variables or create new ones.
+
+Eller ændre en nuværrende variabel
+
+```{r}
+starwars %>%
+  select(name, mass) %>%
+  mutate(mass = ifelse(mass < 50 , "Thin", "Fat")) %>%
+  head(3)
+```
+
+
+
+## Eksempler med dplyr functions
+
+### Summarize
+
+The verb summarize() reduces your dataset to one observation, which is summarized according to a defined function.
+
+```{r}
+starwars %>%
+  drop_na() %>%
+  summarise(mean(mass))
+```
+
+
+
+
+# GG2plot
+
+
+## Intro til gg2plot
+
+Vi kigger i dag på de to vigtigste elementer under gg2plot, som de selv beskriver på følgende måde:
+
+###
+
+- **Aestetics**: Devine the “surface” of your plot, in terms of what has to be mapped (size, color) on the x and y (and potentially adittional) axes. Aesteticts are defined within the aes() function.
+
+
+- **Geometries**: Visual elements you can see in the plot itself, such as bars, lines, and points. They are defined within various geom_XYZ() functions.
+
+
+## visualisering af 1 variable
+
+Lad os bruge et nyt dataset:
+
+```{r}
+bike <- readRDS(url("https://github.com/SDS-AAU/SDS-master/raw/master/00_data/bikes_montreal.rds?dl=1"))
+```
+
+
+
+### Histogram
+
+```{r}
+starwars %>% ggplot(aes(x = height)) +
+  geom_histogram()
+```
+
+### density plot
+
+```{r}
+starwars %>% ggplot(aes(x = height)) +
+  geom_density()
+```
+```{r}
+starwars %>% ggplot(aes(x = height, fill = gender)) +
+  geom_histogram() +
+  scale_x_log10()
+```
 
