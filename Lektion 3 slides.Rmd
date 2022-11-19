@@ -326,6 +326,7 @@ bike %>% ggplot(aes(x = duration_sec)) +
 bike %>% ggplot(aes(x = duration_sec)) +
   geom_density()
 ```
+
 ```{r}
 bike %>% ggplot(aes(x = duration_sec)) +
   geom_histogram() +

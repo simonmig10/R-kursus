@@ -107,3 +107,34 @@ starwars_plots %>% ggplot(aes(x = mass, y= height)) +
   geom_point() 
 ```
 
+
+
+# opgave 2
+
+Jeg har hentet data på arbejdsløshedsraten direkte inde fra OECD. Her kræves der først en del arbejde med dataet føør vi kan bruge det til noget.... 
+
+```{r}
+library(readxl)
+OECD_data <- read_excel("OECD data.xlsx")
+glimpse(OECD_data)
+
+```
+
+Alle navne er med stort, hvilket bliver lidt nederen i længden... Så jeg ændre til små bogstaver:
+
+
+```{r}
+names(OECD_data) <- tolower(names(OECD_data))
+```
+
+
+### Step 1
+
+Brug nu select funktionen til at vælge de tre kolonner: "location","value" og "time".
+
+```{r}
+OECD_data %>% 
+  select(location, value, time)
+```
+
+
