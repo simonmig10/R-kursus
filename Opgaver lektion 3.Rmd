@@ -81,3 +81,29 @@ starwars %>%
 ```
 
 Så det ser ud til Starwars karaktere med brundt/gråt hår har den højeste BMI!
+
+
+
+## Step 4 
+
+Visualisering lad os bruge datasættet fra **step 2** derfor gemmer vi dette som et nyt dataset kaldet "starwars_plots"
+
+```{r}
+starwars_plots= starwars %>%
+  select(name, hair_color, mass, height)%>%
+  drop_na() %>%
+  mutate(height= height/100) %>%
+  mutate(BMI= mass/(height^2))
+```
+
+
+
+## Step 5 
+
+Lav et plot der viser Ma
+
+```{r}
+starwars_plots %>% ggplot(aes(x = mass, y= height)) +
+  geom_point() 
+```
+
