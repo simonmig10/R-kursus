@@ -278,31 +278,62 @@ Vi kigger i dag på de to vigtigste elementer under gg2plot, som de selv beskriv
 - **Geometries**: Visual elements you can see in the plot itself, such as bars, lines, and points. They are defined within various geom_XYZ() functions.
 
 
+## Intro til gg2plot
+
+Hver gang vi laver et plot starter vi med at specificere Aestetics:
+
+```{r, eval=FALSE}
+bike %>% ggplot(aes(x = data$x, y = data$y, fill= data$z))
+```
+
+Herefter tilføjer vi hvad selve plottet skal indeholde med geometries:
+
+```{r, eval=FALSE}
+bike %>% ggplot(aes(x = data$x, y = data$y, fill= data$z)) +
+  geom_point()
+```
+
+
 ## visualisering af 1 variable
 
-Lad os bruge et nyt dataset:
+Lad os bruge et nyt dataset, og kigge på duration af cykel-ture:
 
 ```{r}
 bike <- readRDS(url("https://github.com/SDS-AAU/SDS-master/raw/master/00_data/bikes_montreal.rds?dl=1"))
 ```
 
+Brug glimpse for at se dataet:
+
+```{r, eval=FALSE}
+glimpse(bike)
+```
+
+```{r, eval=FALSE}
+bike %>% head()
+```
 
 
 ### Histogram
 
 ```{r}
-starwars %>% ggplot(aes(x = height)) +
+bike %>% ggplot(aes(x = duration_sec)) +
   geom_histogram()
 ```
 
 ### density plot
 
 ```{r}
-starwars %>% ggplot(aes(x = height)) +
+bike %>% ggplot(aes(x = duration_sec)) +
   geom_density()
 ```
 ```{r}
-starwars %>% ggplot(aes(x = height, fill = gender)) +
+bike %>% ggplot(aes(x = duration_sec)) +
+  geom_histogram() +
+  scale_x_log10() #Vi tager logaritmen af x-aksen for at gøre variablen mere normal fordelt. 
+```
+
+```{r}
+bike %>% ggplot(aes(x = duration_sec, fill = weekday)) +
   geom_histogram() +
   scale_x_log10()
 ```

@@ -1,0 +1,83 @@
+---
+title: "Opgaver lektion 3"
+author: "Simon"
+date: "19/11/2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Inden opgaven læs følgende pakker!
+
+```{r, message=FALSE}
+library(tidyverse)
+library(ggplot2)
+```
+
+
+
+# Opgave 1:
+
+Brug de følgende steps til at udregne BMI for Starwars karaktere. baseret på deres hår farve: 
+
+## Step 1
+
+Vælg de 4 variable vi ønsker at bruge (Vi beholder "name")
+
+Fejrn "NA" værdier med funktionen "drop_na()"
+
+```{r}
+starwars %>%
+  select(name, hair_color, mass, height)%>%
+  drop_na()
+```
+
+## Step 2
+
+Brug mutate til at lave en ny kolonne der viser BMI:
+
+Formlen for BMI er følgende: $BMI= \frac{mass(kg)}{height(M)^2}$
+
+Da vi skal have height i meter skal vi også bruge mutate til at øndre denne kolonne:
+
+**Husk vi stadig skal bruge ovenstående steps**
+
+```{r}
+starwars %>%
+  select(name, hair_color, mass, height)%>%
+  drop_na() %>%
+  mutate(height= height/100) 
+```
+
+
+Vi tilføjer nu BMI:
+
+```{r}
+starwars %>%
+  select(name, hair_color, mass, height)%>%
+  drop_na() %>%
+  mutate(height= height/100) %>%
+  mutate(BMI= mass/(height^2)) 
+```
+
+
+**Hurtig Øvelse, Hvem har den højeste og mindste BMI? Brug Arrange() funktionen**
+
+## Step 3 
+
+Vi kan nu udregne gennemsnit af BMI for hver hår farve:
+
+Vi bruger en ny funktion kaldet "group_by()" Den opdeller kategoriske variable op i hver deres kategori og fungere derfor godt sammen med summarise funktionen:
+
+```{r}
+
+starwars %>%
+  select(name, hair_color, mass, height)%>%
+  drop_na() %>%
+  mutate(height= height/100) %>%
+  mutate(BMI= mass/(height^2)) %>%
+  group_by(hair_color) %>%
+  summarise(mean(BMI))
+```
+
+Så det ser ud til Starwars karaktere med brundt/gråt hår har den højeste BMI!
