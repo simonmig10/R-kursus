@@ -159,16 +159,6 @@ DEU_dat=OECD_data %>%
   filter(location == "DEU") %>%
   rename(deu_value = value)
 
-ITA_dat=OECD_data %>% 
-  select(location, value, time) %>%
-  filter(location == "ITA") %>%
-  rename(ita_value = value)
-
-OECD_dat=OECD_data %>% 
-  select(location, value, time) %>%
-  filter(location == "OECD")%>%
-  rename(oecd_value = value)
-
 USA_dat=OECD_data %>% 
   select(location, value, time) %>%
   filter(location == "USA")%>%
@@ -176,10 +166,8 @@ USA_dat=OECD_data %>%
 
 option_1_data= DK_dat %>%
   left_join(DEU_dat, by = c("time")) %>%
-  left_join(ITA_dat, by = c("time")) %>%
-  left_join(OECD_dat, by = c("time")) %>%
   left_join(USA_dat, by = c("time")) %>%
-  select(time,dk_value, deu_value, ita_value, oecd_value, usa_value)
+  select(time,dk_value, deu_value, usa_value)
   
 ```
 
@@ -206,12 +194,45 @@ Jeg kunne nu lave hver kolonne til en tidsserie og derved droppe time variablen 
 ```{r}
 data_ts= option_2_data %>% 
   select(-time) %>%
-  ts(start = c(2005,1), frequency = 4)
+  ts(start = c(2005), frequency = 1) 
 ```
 
 
-**MEN** så vil jeg ikke kunne bruge gg2plot, da dette ikke er lavet for tidsserier. Derfor beholder vi formatet "option_2_data" hvor jeg har en time variabel med. 
+**MEN** så vil jeg ikke kunne bruge ggplot2, da dette ikke er lavet for tidsserier. Derfor beholder vi formatet "option_2_data" hvor jeg har en time variabel med. og vi kan nu lave forskellige plots:
 
+```{r}
+library(zoo)
+
+ggplot(option_2_data, aes(x= time ,y = DNK)) + # angiver det datasæt, vi ønsker at plotte fra
+# samt hvad der skal være på x og y akserne
+geom_line() + # vi ønsker at lave et linjeplot
+labs(title = "Arbejdsløshedsraten i Danmark fra 2005 til 2020",
+caption = "Kilde: OECD.dk")
+```
+
+
+```{r}
+ggplot(option_2_data, aes(x= time)) +
+geom_line(aes(y = DNK, col= "DNK")) +
+geom_line(aes(y = DEU, col= "DEU"))
+
+```
+
+
+```{r}
+plot1 <- ggplot(option_2_data, aes(time)) +
+geom_line(aes(y = DNK))
+
+plot2 <- ggplot(option_2_data, aes(time)) +
+geom_line(aes(y = DEU))
+```
+
+
+```{r}
+par()
+plot1
+plot2
+```
 
 
 
