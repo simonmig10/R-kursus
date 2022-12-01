@@ -18,13 +18,13 @@ library(ggplot2)
 
 # Opgave 1:
 
-Brug de følgende steps til at udregne BMI for Starwars karaktere. baseret på deres hår farve: 
+Brug de følgende steps til at udregne BMI for Starwars karaktere. Baseret på deres hår farve: 
 
 ## Step 1
 
 Vælg de 4 variable vi ønsker at bruge (Vi beholder "name")
 
-Fejrn "NA" værdier med funktionen "drop_na()"
+Fjern "NA" værdier med funktionen "drop_na()"
 
 ```{r}
 starwars %>%
@@ -38,11 +38,11 @@ Brug mutate til at lave en ny kolonne der viser BMI:
 
 Formlen for BMI er følgende: $BMI= \frac{mass(kg)}{height(M)^2}$
 
-Da vi skal have height i meter skal vi også bruge mutate til at øndre denne kolonne:
+Da vi skal have height i meter skal vi også bruge mutate til at ændre denne kolonne:
 
 **Husk vi stadig skal bruge ovenstående steps**
 
-```{r}
+```{r, eval=FALSE}
 starwars %>%
   select(name, hair_color, mass, height)%>%
   drop_na() %>%
@@ -50,10 +50,10 @@ starwars %>%
 ```
 
 
-Vi tilføjer nu BMI:
+Tilføj nu selv en mutate funktion der laver BMI kolonnen, gem dette som et nyt datasæt kaldet "starwars_BMI"
 
-```{r}
-starwars %>%
+```{r, echo=FALSE}
+starwars_BMI=starwars %>%
   select(name, hair_color, mass, height)%>%
   drop_na() %>%
   mutate(height= height/100) %>%
@@ -61,21 +61,17 @@ starwars %>%
 ```
 
 
-**Hurtig Øvelse, Hvem har den højeste og mindste BMI? Brug Arrange() funktionen**
+Hvem har den højeste og mindste BMI? (Brug Arrange() funktionen)
 
 ## Step 3 
 
 Vi kan nu udregne gennemsnit af BMI for hver hår farve:
 
-Vi bruger en ny funktion kaldet "group_by()" Den opdeller kategoriske variable op i hver deres kategori og fungere derfor godt sammen med summarise funktionen:
+Vi bruger en ny funktion kaldet "group_by()" Den opdeller kategoriske variable i hver deres kategori og fungere derfor godt sammen med summarise funktionen:
 
 ```{r}
 
-starwars %>%
-  select(name, hair_color, mass, height)%>%
-  drop_na() %>%
-  mutate(height= height/100) %>%
-  mutate(BMI= mass/(height^2)) %>%
+starwars_BMI %>%
   group_by(hair_color) %>%
   summarise(mean(BMI))
 ```
@@ -84,34 +80,20 @@ Så det ser ud til Starwars karaktere med brundt/gråt hår har den højeste BMI
 
 
 
-## Step 4 
-
-Visualisering lad os bruge datasættet fra **step 2** derfor gemmer vi dette som et nyt dataset kaldet "starwars_plots"
-
-```{r}
-starwars_plots= starwars %>%
-  select(name, hair_color, mass, height)%>%
-  drop_na() %>%
-  mutate(height= height/100) %>%
-  mutate(BMI= mass/(height^2))
-```
-
-
-
 ## Step 5 
 
-Lav et plot der viser Ma
+Brug nu ggplot() funktionen til at lave et plot der viser "Mass" af x-aksen, og "height" af y-aksen. Brug punkter til at vise forholdet. 
 
-```{r}
-starwars_plots %>% ggplot(aes(x = mass, y= height)) +
+```{r, eval=FALSE, echo=FALSE}
+starwars_BMI %>% ggplot(aes(x = mass, y= height)) +
   geom_point() 
 ```
 
 
 
-# opgave 2
+# opgave 2 Når data er træls...
 
-Jeg har hentet data på arbejdsløshedsraten direkte inde fra OECD. Her kræves der først en del arbejde med dataet føør vi kan bruge det til noget.... 
+Jeg har hentet data på arbejdsløshedsraten direkte inde fra OECD. Her kræves der først en del arbejde med dataet før vi kan bruge det til noget.... 
 
 ```{r}
 library(readxl)
@@ -136,7 +118,7 @@ OECD_data %>%
 
 Brug nu select funktionen til at vælge de tre kolonner: "location","value" og "time".
 
-```{r}
+```{r, eval=FALSE}
 OECD_data %>% 
   select(location, value, time)
 ```
@@ -171,18 +153,25 @@ option_1_data= DK_dat %>%
   
 ```
 
-Denne metode tager en del tid og kode, nogle gange er det nødvendigt, men til lige præcis den her opgave kan vi bruge pivot_wider funktionen som gør det meget nemmere:
+Denne metode tager en del tid og kode, nogle gange er det nødvendigt, men til lige præcis den her opgave kan vi bruge pivot_wider() funktionen som gør det meget nemmere:
 
 2. Brug pivot_wider() funktionen 
 
-- Søg pivot_wider funktionen op under "Help"
+- Søg pivot_wider() funktionen op under "Help"
 
-- brug "namess_from" og "values_from" til at få dit dataset. 
+- brug "names_from" og "values_from" til at få dit nye dataset. 
 
-```{r}
+- Nedenfor kan i se hvordan det nye dataset skal se ud: 
+
+
+```{r, echo=FALSE}
 option_2_data=OECD_data %>% 
   select(location, value, time) %>%
   pivot_wider( names_from = location, values_from= value)
+```
+
+```{r}
+option_2_data
 ```
 
 
@@ -198,11 +187,9 @@ data_ts= option_2_data %>%
 ```
 
 
-**MEN** så vil jeg ikke kunne bruge ggplot2, da dette ikke er lavet for tidsserier. Derfor beholder vi formatet "option_2_data" hvor jeg har en time variabel med. og vi kan nu lave forskellige plots:
+**MEN** så vil jeg ikke kunne bruge ggplot2, da dette ikke er lavet for tidsserier. Derfor beholder vi formatet "option_2_data" hvor jeg har en "time" variabel med. Vi kan nu lave forskellige plots:
 
 ```{r}
-library(zoo)
-
 ggplot(option_2_data, aes(x= time ,y = DNK)) + # angiver det datasæt, vi ønsker at plotte fra
 # samt hvad der skal være på x og y akserne
 geom_line() + # vi ønsker at lave et linjeplot
@@ -210,29 +197,12 @@ labs(title = "Arbejdsløshedsraten i Danmark fra 2005 til 2020",
 caption = "Kilde: OECD.dk")
 ```
 
-
-```{r}
-ggplot(option_2_data, aes(x= time)) +
-geom_line(aes(y = DNK, col= "DNK")) +
-geom_line(aes(y = DEU, col= "DEU"))
-
-```
+- Forsøg selv at lave flere plots ved hjælp af cheatsheet til ggplot2 som er citeret i slides. 
 
 
-```{r}
-plot1 <- ggplot(option_2_data, aes(time)) +
-geom_line(aes(y = DNK))
-
-plot2 <- ggplot(option_2_data, aes(time)) +
-geom_line(aes(y = DEU))
-```
 
 
-```{r}
-par()
-plot1
-plot2
-```
+
 
 
 
