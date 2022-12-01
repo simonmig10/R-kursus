@@ -283,24 +283,25 @@ Vi kigger i dag på de to vigtigste elementer under gg2plot, som de selv beskriv
 Hver gang vi laver et plot starter vi med at specificere Aestetics:
 
 ```{r, eval=FALSE}
-bike %>% ggplot(aes(x = data$x, y = data$y, fill= data$z))
+data %>% ggplot(aes(x = data$x, y = data$y, fill= data$z))
 ```
 
 Herefter tilføjer vi hvad selve plottet skal indeholde med geometries:
 
 ```{r, eval=FALSE}
-bike %>% ggplot(aes(x = data$x, y = data$y, fill= data$z)) +
+data %>% ggplot(aes(x = data$x, y = data$y, fill= data$z)) +
   geom_point()
 ```
 
 
 ## visualisering af 1 variable
 
-Lad os bruge et nyt dataset, og kigge på duration af cykel-ture:
-
+Lad os bruge et nyt dataset: Det kan hentes direkte fra github med nedenstående kode:
+\tiny
 ```{r}
 bike <- readRDS(url("https://github.com/SDS-AAU/SDS-master/raw/master/00_data/bikes_montreal.rds?dl=1"))
 ```
+\normalsize
 
 Brug glimpse for at se dataet:
 
@@ -312,30 +313,52 @@ glimpse(bike)
 bike %>% head()
 ```
 
+## visualisering af 1 variable
 
 ### Histogram
 
-```{r}
+- Vi kan lave histogram med geom_histogram()
+
+```{r, eval=FALSE}
 bike %>% ggplot(aes(x = duration_sec)) +
   geom_histogram()
 ```
 
 ### density plot
 
-```{r}
+- vi kan lave density plot med geom_density()
+
+```{r, eval=FALSE}
 bike %>% ggplot(aes(x = duration_sec)) +
   geom_density()
 ```
 
-```{r}
-bike %>% ggplot(aes(x = duration_sec)) +
-  geom_histogram() +
-  scale_x_log10() #Vi tager logaritmen af x-aksen for at gøre variablen mere normal fordelt. 
+
+## visualisering af 2 variable: 
+
+```{r, eval=FALSE}
+bike %>%
+  count(start_day, weekday) %>%
+  ggplot(aes(x=start_day, y=n, color = weekday)) +
+  geom_point()
 ```
 
-```{r}
-bike %>% ggplot(aes(x = duration_sec, fill = weekday)) +
-  geom_histogram() +
-  scale_x_log10()
+- Lad os tjekke hvorfor vi skriver y=n!
+
+
+## visualisering af 2 variable: 
+
+Vi kan ogsåå tilføje titel samt yderlige beskriverlser med labs() funktionen: 
+
+```{r, eval=FALSE}
+bike %>%
+  count(start_day, weekday) %>%
+  ggplot(aes(x=start_day, y=n, color = weekday)) +
+  geom_point() +
+labs(title = "Cykelturer fordelt på dage", caption = "Kilde: Github dataset")+
+  xlab("Start dag") +
+  ylab("Antal cykelturer")
+
 ```
 
+- For mere info om ggplot2 check (https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2)
