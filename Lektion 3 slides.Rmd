@@ -49,6 +49,12 @@ Tidyverse benytter tibbles som er lavet på følgende 3 måder:
 
 3. Hvis du bruger en hver dplyr funktion på en data frame bliver denne til en tibble.
 
+```{r, eval=FALSE, echo=FALSE}
+library(tibble)
+tibble(x = letters)
+```
+
+
 
 ## Pipes
 
@@ -119,6 +125,7 @@ Når jeg bruger pipe omskrives det første objekt ikke, hvis jeg ønsker dette b
 library(magrittr)
 ```
 
+**Så vent lidt med at kør nedenstående**
 
 ```{r, results='hide'}
 cars %<>%
