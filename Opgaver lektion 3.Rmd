@@ -193,7 +193,9 @@ labs(title = "Arbejdsløshedsraten i Danmark fra 2005 til 2020",
 caption = "Kilde: OECD.dk")
 ```
 
-- Forsøg selv at lave flere plots ved hjælp af cheatsheet til ggplot2 som er citeret i slides. 
+- Forsøg selv at lave flere plots ved hjælp af cheatsheet til ggplot2 som kan findes via moodle link:
+
+
 
 
 
