@@ -18,7 +18,7 @@ library(ggplot2)
 
 # Opgave 1:
 
-Brug de følgende steps til at udregne BMI for Starwars karaktere. Baseret på deres hår farve: 
+Brug de følgende steps til at udregne BMI for Starwars karaktere, baseret på deres hårfarve: 
 
 ## Step 1
 
@@ -50,7 +50,7 @@ starwars %>%
 ```
 
 
-Tilføj nu selv en mutate funktion der laver BMI kolonnen, gem dette som et nyt datasæt kaldet "starwars_BMI"
+ - Tilføj nu selv en mutate funktion der laver BMI kolonnen, gem dette som et nyt datasæt kaldet "starwars_BMI"
 
 ```{r, echo=FALSE}
 starwars_BMI=starwars %>%
@@ -61,7 +61,7 @@ starwars_BMI=starwars %>%
 ```
 
 
-Hvem har den højeste og mindste BMI? (Brug Arrange() funktionen)
+- Hvem har den højeste og mindste BMI? (Brug Arrange() funktionen)
 
 ## Step 3 
 
@@ -109,10 +109,6 @@ Alle navne er med stort, hvilket bliver lidt nederen i længden... Så jeg ændr
 names(OECD_data) <- tolower(names(OECD_data))
 ```
 
-```{r}
-OECD_data %>%
-  count(location)
-```
 
 ### Step 1
 
