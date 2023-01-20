@@ -96,6 +96,7 @@ starwars_BMI %>% ggplot(aes(x = mass, y= height)) +
 Jeg har hentet data på arbejdsløshedsraten direkte inde fra OECD. Her kræves der først en del arbejde med dataet før vi kan bruge det til noget.... 
 
 ```{r}
+library(tidyverse)
 library(readxl)
 OECD_data <- read_excel("OECD data.xlsx")
 glimpse(OECD_data)
